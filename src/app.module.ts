@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { DatabaseModule } from './database';
-import { ProductModule } from './modules';
+import { AuthModule, ProductModule, UserModule } from './modules';
+import { AuthGuard } from './common/guards/auth.guard';
 
 @Module({
-  imports: [DatabaseModule, ProductModule],
+  imports: [DatabaseModule, ProductModule, UserModule, AuthModule],
   controllers: [],
   providers: [],
 })

@@ -11,6 +11,7 @@ async function bootstrap() {
     .setTitle('Horbath Technical Test API')
     .setDescription('This is an API for Horbath Technical Test')
     .setVersion('1.0')
+    .addBearerAuth({ in: 'header', type: 'http' })
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, documentFactory);

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
-import { ProductEntity } from 'src/common/entities';
+import { ProductEntity, UserEntity } from 'src/common/entities';
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.DB_PASS ? String(process.env.DB_PASS) : '',
       database: process.env.DB_NAME,
-      entities: [ProductEntity],
+      entities: [ProductEntity, UserEntity],
       synchronize: process.env.NODE_ENV !== 'production',
     }),
   ],

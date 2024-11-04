@@ -6,8 +6,10 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiOperation,
   ApiParam,
@@ -16,6 +18,7 @@ import {
 } from '@nestjs/swagger';
 import { ProductService } from '../../app';
 import { ProductRequestDto, ProductResponseDto } from './dtos/product.dto';
+import { AuthGuard } from 'src/common';
 
 @ApiTags('Products')
 @Controller('products')
@@ -23,7 +26,9 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'Create a new product' })
+  @ApiBearerAuth()
   @ApiResponse({
     status: 201,
     description: 'Sucess Request',
@@ -38,6 +43,8 @@ export class ProductController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiParam({
     name: 'id',
     type: 'number',
@@ -60,7 +67,9 @@ export class ProductController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'List all products' })
+  @ApiBearerAuth()
   @ApiResponse({
     status: 200,
     description: 'Sucess Request',
@@ -73,6 +82,8 @@ export class ProductController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiParam({
     name: 'id',
     type: 'number',
@@ -92,6 +103,8 @@ export class ProductController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiParam({
     name: 'id',
     type: 'number',
